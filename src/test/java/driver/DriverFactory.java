@@ -24,6 +24,9 @@ public class DriverFactory {
 	                options.addArguments("--disable-gpu");
 	            }
 		options.addArguments("--incognito");
+		options.addArguments("--headless=new");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
 		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 		options.setExperimentalOption("useAutomationExtension", false);
 		options.addArguments("--disable-blink-features=AutomationControlled");
