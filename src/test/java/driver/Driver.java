@@ -29,6 +29,7 @@ public  class Driver {
     // Close the webDriver instance
     @AfterScenario
     public void closeDriver(){
+        if(webDriver!= null)
         webDriver.quit();
     }
 
