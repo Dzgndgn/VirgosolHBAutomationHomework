@@ -1,0 +1,21 @@
+Created by Düzgün on 10.03.2026
+
+This is a concept file with following syntax for each concept.
+#Tarayıcı açılır Hepsburada internet sitesine gider ve giriş yap butonuna tıklar
+* "acceptCookieButton" butonuna tıklanır
+* sonrasında "myAccountButton" butonuna tıkla
+* "loginButton" butonuna tıkla ve gir
+# <email> ve <password> girerek başarılı şekilde giriş yapılır
+* "emailInput" alanına <email> değerini yazılır
+* "passwordInput" alanına <password> değerini yazı
+* "submitLoginButton" butonuna tıklanıp
+#ana sayfayada arama butonuna <item> yazılır ve tıklanır
+* "searchArea" alanına tıklay
+* "searchInput" alanına <item> yazılır ve "searchSuggestion" tıklanır ve geçiş yapar
+# listelenmiş ürünlerden istenen ürüne tıklayıp ürün bilgi sayfasına geçiş yapar
+* Listenin grid yapısında olduğu kontrol edilir
+* Listedeki 2.satırdaki ilk ürüne gidilir ve tıklanır
+# ürünü sepete ekler
+* "addToCartButton" butonuna tıkla ve ekle
+# sepetine giriş yapar
+* "goToCartButton" butonuna tıkla ve git

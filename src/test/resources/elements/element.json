@@ -1,3 +1,77 @@
 [
-
+  {
+    "key": "acceptCookieButton",
+    "value": "div[@data-name='Accept Button']",
+    "type": "xpath"
+  },
+  {
+    "key": "myAccountButton",
+    "value": "myAccount",
+    "type": "id"
+  },
+  {
+    "key": "loginButton",
+    "value": "login",
+    "type": "id"
+  },
+  {
+    "key": "emailInput",
+    "value": "txtUserName",
+    "type": "id"
+  },
+  {
+    "key": "passwordInput",
+    "value": "txtPassword",
+    "type": "id"
+  },
+  {
+    "key": "submitLoginButton",
+    "value": "btnLogin",
+    "type": "id"
+  },
+  {
+    "key": "searchArea",
+    "value": "//div[@role='search']",
+    "type": "xpath"
+  },
+  {
+    "key": "searchInput",
+    "value": "//input[@data-test-id='search-bar-input']",
+    "type": "xpath"
+  },
+  {
+    "key": "searchSuggestion",
+    "value": "div[data-test-id='search-bar-suggestions-container'][aria-label*='bilgisayar']",
+    "type": "css"
+  },
+  {
+    "key": "productListContainer",
+    "value": "//ul[starts-with(@class,'productListContent')]",
+    "type": "xpath"
+  },
+  {
+    "key": "firstProduct",
+    "value": "i0",
+    "type": "id"
+  },
+  {
+    "key": "productItems",
+    "value": "//ul[@id='1']//li[starts-with(@id,'i')]",
+    "type": "xpath"
+  },
+  {
+    "key": "addToCartButton",
+    "value": "//div//button[@data-test-id='addToCart']",
+    "type": "xpath"
+  },
+  {
+    "key": "goToCartButton",
+    "value": "//a[@href='https://checkout.hepsiburada.com/sepetim']",
+    "type": "xpath"
+  },
+  {
+    "key": "cartProductCheck",
+    "value": "//a[contains(@href,'bilgisayar')]",
+    "type": "xpath"
+  }
 ]
