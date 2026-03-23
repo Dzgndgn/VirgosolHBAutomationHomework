@@ -192,7 +192,7 @@ public class LocatorManager extends Driver {
         int element = calculateRow(key);
 
         List<WebElement> products = webDriver.findElements(getBy(key));
-
+        ScrollInto(key);
         products.get(element).click();
 
         for (String windowHandle : webDriver.getWindowHandles()) {
