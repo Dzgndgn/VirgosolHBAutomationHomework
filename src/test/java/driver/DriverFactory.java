@@ -18,31 +18,29 @@ public class DriverFactory {
 	}
 
 	private static WebDriver createDriver() {
-		ChromeOptions options = new ChromeOptions();
+		// QAMaster'ın gönderdiği parametreleri alıyoruz
+		String browserType = System.getProperty("browserType", "Local");
+		String hubUrl = System.getProperty("hubUrl");
 
-		// Sunucu ortamında (Linux/Docker) çalışması için zorunlu ayarlar
+		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
-		options.addArguments("--disable-gpu");
+		options.addArguments("--headless=new"); // Sunucu için şart
 		options.addArguments("--window-size=1920,1080");
 
-		// SUNUCUDA ÇALIŞIYORSAN HEADLESS ŞARTTIR
-		options.addArguments("--headless=new");
-
 		try {
-			// QAMaster veya Sistem Değişkenlerinden gelen Hub URL'ini kontrol et
-			String hubUrl = System.getProperty("DQAMASTER_HUB_URL");
-
-			if (hubUrl != null && !hubUrl.isEmpty()) {
-				System.out.println("Connecting to Remote Driver at: " + hubUrl);
+			// Eğer browserType Remote ise veya bir hubUrl varsa RemoteWebDriver kullan
+			if ("Remote".equalsIgnoreCase(browserType) || (hubUrl != null && !hubUrl.isEmpty())) {
+				System.out.println("QAMaster Hub'ına bağlanılıyor: " + hubUrl);
 				return new RemoteWebDriver(new URL(hubUrl), options);
 			} else {
-				// Eğer hub yoksa yerel çalıştır (Local debug için)
+				// Sadece localde çalışırken buraya girer
+				System.out.println("Yerel ChromeDriver başlatılıyor...");
 				return new ChromeDriver(options);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("Driver başlatılamadı!");
+			System.err.println("Driver oluşturulurken hata: " + e.getMessage());
+			throw new RuntimeException("Driver başlatılamadı!", e);
 		}
 	}
 }
