@@ -12,16 +12,25 @@ import java.util.Collections;
 
 public class DriverFactory {
 
+	private static WebDriver driver;
+
 	public static WebDriver getDriver() {
+		if (driver == null) {
+			driver = createDriver();
+		}
+		return driver;
+	}
+
+	private static WebDriver createDriver() {
 		ChromeOptions options = new ChromeOptions();
 
-		options.addArguments("--headless=new");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--window-size=1920,1080");
-		options.addArguments("--incognito");
 
-// ❗ SADECE LOCAL DRIVER
+		// ❗ HEADLESS KALDIR (QAMaster kendi yönetir)
+		// options.addArguments("--headless=new");
+
 		return new ChromeDriver(options);
 	}
 }
