@@ -22,6 +22,7 @@ public class NewStepImp {
     public void implementation1(String acceptCookieButton) {
         LocatorManager.AcceptCookie(acceptCookieButton);
         //firstPage.clickBtn();
+
     }
 
     @Step("sonrasında <myAccountButton> butonuna tıkla")

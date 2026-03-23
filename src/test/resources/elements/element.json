@@ -1,8 +1,8 @@
 [
   {
     "key": "acceptCookieButton",
-    "value": "div[@data-name='Accept Button']",
-    "type": "xpath"
+    "value": "div[data-name='Accept Button']",
+    "type": "css"
   },
   {
     "key": "myAccountButton",

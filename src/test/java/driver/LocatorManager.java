@@ -107,25 +107,13 @@ public class LocatorManager extends Driver {
     }
 
     public static void AcceptCookie(String key) {
-
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript(
+                "document.querySelector('efilli-layout-dynamic')" +
+                        ".shadowRoot.querySelector(\"div[data-name='Accept Button']\").click()"
+        );
 
-        Locator locator = elementMap.get(key);
 
-        String script = "return document.querySelector('efilli-layout-dynamic').shadowRoot" +
-                ".querySelector('" + locator.value + "')";
-
-        try {
-
-            WebElement acceptBtn = (WebElement) js.executeScript(script);
-
-            if (acceptBtn != null)
-                js.executeScript("arguments[0].click();", acceptBtn);
-
-        } catch (Exception e) {
-
-            System.out.println("Çerez butonu bulunamadı veya tıklanamadı.");
-        }
     }
 
     public static void ClickButton(String key) {
@@ -192,7 +180,6 @@ public class LocatorManager extends Driver {
         int element = calculateRow(key);
 
         List<WebElement> products = webDriver.findElements(getBy(key));
-        ScrollInto(key);
         products.get(element).click();
 
         for (String windowHandle : webDriver.getWindowHandles()) {
