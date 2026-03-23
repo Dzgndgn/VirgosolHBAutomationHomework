@@ -15,39 +15,34 @@ public class DriverFactory {
 	public static WebDriver getDriver() {
 		ChromeOptions options = new ChromeOptions();
 
-// Temel Ayarlar
 		options.addArguments("--headless=new");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--window-size=1920,1080");
 		options.addArguments("--incognito");
-		options.addArguments("--disable-blink-features=AutomationControlled");
-		options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 
-		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-		options.setExperimentalOption("useAutomationExtension", false);
-
-// Browser tipi
 		String browserType = System.getProperty("browserType", "Local");
-
-// 🔥 KRİTİK DÜZELTME: QAMASTER_HUB_URL kullan
 		String hubUrl = System.getProperty("QAMASTER_HUB_URL");
+
+// 🔥 CRITICAL FIX
+		if (hubUrl != null && hubUrl.contains("localhost")) {
+			System.out.println("Fixing localhost → host.docker.internal");
+			hubUrl = hubUrl.replace("localhost", "host.docker.internal");
+		}
 
 		if ("Remote".equalsIgnoreCase(browserType)) {
 			if (hubUrl == null || hubUrl.isEmpty()) {
-				throw new RuntimeException("Hata: Remote seçili ama QAMASTER_HUB_URL boş!");
+				throw new RuntimeException("HUB URL boş!");
 			}
 
 			try {
 				System.out.println("Using HUB URL: " + hubUrl);
 				return new RemoteWebDriver(new URL(hubUrl), options);
 			} catch (Exception e) {
-				// 🔥 stacktrace kaybolmasın
-				throw new RuntimeException("Remote WebDriver sunucuya bağlanamadı", e);
+				throw new RuntimeException("Remote WebDriver bağlanamadı", e);
 			}
 		}
 
-// Local çalıştırma
 		return new ChromeDriver(options);
 	}
 }
