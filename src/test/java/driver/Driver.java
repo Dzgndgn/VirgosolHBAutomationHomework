@@ -13,10 +13,11 @@ public  class Driver {
     public static WebDriver webDriver;
 
     @BeforeScenario
-    public void initializeDriver(){
+    public void initializeDriver() throws InterruptedException {
         System.out.println("deneme5");
         webDriver = DriverFactory.getDriver();
         webDriver.manage().window().maximize();
+        Thread.sleep(2000);
         webDriver.get("https://www.hepsiburada.com/");
         String path = Objects.requireNonNull(
                 Driver.class.getClassLoader().getResource("elements/element.json")
