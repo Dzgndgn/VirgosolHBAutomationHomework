@@ -21,28 +21,7 @@ public class DriverFactory {
 		options.addArguments("--window-size=1920,1080");
 		options.addArguments("--incognito");
 
-		String browserType = System.getProperty("browserType", "Local");
-		String hubUrl = System.getProperty("QAMASTER_HUB_URL");
-
-// 🔥 CRITICAL FIX
-		if (hubUrl != null && hubUrl.contains("localhost")) {
-			System.out.println("Fixing localhost → host.docker.internal");
-			hubUrl = hubUrl.replace("localhost", "host.docker.internal");
-		}
-
-		if ("Remote".equalsIgnoreCase(browserType)) {
-			if (hubUrl == null || hubUrl.isEmpty()) {
-				throw new RuntimeException("HUB URL boş!");
-			}
-
-			try {
-				System.out.println("Using HUB URL: " + hubUrl);
-				return new RemoteWebDriver(new URL(hubUrl), options);
-			} catch (Exception e) {
-				throw new RuntimeException("Remote WebDriver bağlanamadı", e);
-			}
-		}
-
+// ❗ SADECE LOCAL DRIVER
 		return new ChromeDriver(options);
 	}
 }
