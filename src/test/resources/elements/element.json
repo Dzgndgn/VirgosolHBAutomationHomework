@@ -1,7 +1,7 @@
 [
   {
     "key": "acceptCookieButton",
-    "value": "div[data-name='Accept Button']",
+    "value": "div[data-name='Accept Button'(1)]",
     "type": "css"
   },
   {

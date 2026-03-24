@@ -107,13 +107,32 @@ public class LocatorManager extends Driver {
     }
 
     public static void AcceptCookie(String key) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript(
-                "document.querySelector('efilli-layout-dynamic')" +
-                        ".shadowRoot.querySelector(\"div[data-name='Accept Button']\").click()"
-        );
+//        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+//        js.executeScript(
+//                "document.querySelector('efilli-layout-dynamic')" +
+//                        ".shadowRoot.querySelector(\"div[data-name='Accept Button']\").click()"
+//        );
+//        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+//
+//        wait.until(webDriver ->
+//                ((JavascriptExecutor) webDriver).executeScript(
+//                        "return document.querySelector('efilli-layout-dynamic') != null"
+//                )
+//        );
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
 
-
+        wait.until(driver -> {
+            Object res = ((JavascriptExecutor) driver).executeScript(
+                    "let root = document.querySelector('efilli-layout-dynamic');" +
+                            "if (!root) return false;" +
+                            "let shadow = root.shadowRoot;" +
+                            "if (!shadow) return false;" +
+                            "let btn = shadow.querySelector(\"div[data-name='Accept Button']\");" +
+                            "if (!btn) return false;" +
+                            "btn.click(); return true;"
+            );
+            return Boolean.TRUE.equals(res);
+        });
     }
 
     public static void ClickButton(String key) {

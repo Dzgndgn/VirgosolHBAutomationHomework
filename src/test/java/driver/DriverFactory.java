@@ -6,6 +6,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.HttpCommandExecutor;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Collections;
 
 public class DriverFactory {
 
@@ -26,7 +27,11 @@ public class DriverFactory {
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--headless=new");
 		options.addArguments("--window-size=1920,1080");
-
+		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+		options.setExperimentalOption("useAutomationExtension", false);
+		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+		options.setExperimentalOption("useAutomationExtension", false);
+		options.addArguments("--disable-blink-features=AutomationControlled");
 		// Ekstra stabilite argümanları
 		options.addArguments("--disable-gpu");
 		options.addArguments("--ignore-certificate-errors");
