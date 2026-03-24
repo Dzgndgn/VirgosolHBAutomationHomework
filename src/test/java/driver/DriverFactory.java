@@ -25,7 +25,7 @@ public class DriverFactory {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
-		options.addArguments("--headless=new");
+	 	options.addArguments("--headless=new");
 		options.addArguments("--window-size=1920,1080");
 		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 		options.setExperimentalOption("useAutomationExtension", false);
@@ -37,6 +37,11 @@ public class DriverFactory {
 		options.addArguments("--ignore-certificate-errors");
 		options.addArguments("--disable-extensions");
 
+//-------------------
+		options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
+		options.addArguments("--disable-blink-features=AutomationControlled");
+		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+		options.setExperimentalOption("useAutomationExtension", false);
 		try {
 			if (hubUrl != null && !hubUrl.isEmpty()) {
 				System.out.println("QAMaster Hub'ına bağlanılıyor: " + hubUrl);
