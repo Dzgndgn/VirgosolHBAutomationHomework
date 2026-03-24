@@ -25,7 +25,7 @@ public class DriverFactory {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
-	 	options.addArguments("--headless=new");
+	 //	options.addArguments("--headless=new");
 		options.addArguments("--window-size=1920,1080");
 		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 		options.setExperimentalOption("useAutomationExtension", false);
